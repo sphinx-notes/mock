@@ -34,7 +34,7 @@ class MockOptionSpec(Dict):
 
 
 class MockDirective(SphinxDirective):
-    required_arguments = 1
+    optional_arguments = 1
     final_argument_whitespace = True
     option_spec = MockOptionSpec()
 
