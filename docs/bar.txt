@@ -1,0 +1,6 @@
+Here is a ``bar`` directive:
+
+.. bar::
+   :opt1: val1
+   :opt2: val2
+   :flag1:

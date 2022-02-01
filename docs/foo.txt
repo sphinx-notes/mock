@@ -1,0 +1,6 @@
+Here is a ``foo`` directive:
+
+.. foo::
+   :opt1: val1
+   :opt2: val2
+   :flag1:
