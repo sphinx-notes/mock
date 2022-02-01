@@ -37,6 +37,7 @@ class MockDirective(SphinxDirective):
     optional_arguments = 1
     final_argument_whitespace = True
     option_spec = MockOptionSpec()
+    has_content = True
 
     def run(self) -> List[nodes.Node]:
         return []
