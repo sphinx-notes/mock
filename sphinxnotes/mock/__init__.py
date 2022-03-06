@@ -20,7 +20,7 @@ from docutils.parsers.rst import directives
 
 __title__= 'sphinxnotes-mock'
 __license__ = 'BSD'
-__version__ = '1.0.0a0'
+__version__ = '1.0.0b0'
 __author__ = 'Shengyu Zhang'
 __url__ = 'https://sphinx-notes.github.io/mock'
 __description__ = ' Sphinx extension for mocking directives and roles'
