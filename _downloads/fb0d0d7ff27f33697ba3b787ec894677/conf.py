@@ -37,43 +37,35 @@ extensions = [
     'sphinx.ext.githubpages',
 ]
 
-mock_directives = ['foo']
+mock_directives = [
+    'contents',
+    'foo',
+    ('bar', 'literal'),
+]
 
 # If true, keep warnings as “system message” paragraphs in the built documents.
 # Regardless of this setting, warnings are always written to the standard error
 # stream when sphinx-build is run.
 keep_warnings = True
 
-# The document name of the “master” document, that is,
-# the document that contains the root toctree directive.
-# Default is 'index', we set it here for supporting Sphinx<2.0
-master_doc = 'index'
-
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
 # This pattern also affects html_static_path and html_extra_path.
 exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
-
-# A boolean that decides whether codeauthor and sectionauthor directives
-# produce any output in the built files.
-show_authors = True
 
 # -- Options for HTML output -------------------------------------------------
 
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
 #
-html_theme = 'alabaster'
+html_theme = 'sphinx_book_theme'
 
 html_theme_options = {
-    'nosidebar': True,
+    'repository_url': 'https://github.com/sphinx-notes/mock',
+    "use_repository_button": True,
+    "use_download_button": False,
+    "single_page": True
 }
-
-
-# Add any paths that contain custom static files (such as style sheets) here,
-# relative to this directory. They are copied after the builtin static files,
-# so a file named "default.css" will overwrite the builtin "default.css".
-html_static_path = ['_static']
 
 # The URL which points to the root of the HTML documentation.
 # It is used to indicate the location of document like canonical_url
