@@ -11,7 +11,7 @@ from docutils import nodes
 
 __title__= 'sphinxnotes-mock'
 __license__ = 'BSD'
-__version__ = '1.0.1'
+__version__ = '1.0.2'
 __author__ = 'Shengyu Zhang'
 __url__ = 'https://sphinx.silverrainz.me/mock/'
 __description__ = 'Sphinx extension for mocking directives and roles without modifying documents'
@@ -36,7 +36,7 @@ class MockDirective(SphinxDirective):
             name = d if isinstance(d, str) else d[0]
             if self.name != name:
                 continue
-            mode = self.config.mock_mode if isinstance(d, str) else d[1]
+            mode = self.config.mock_default_mode if isinstance(d, str) else d[1]
             break
 
         if mode == 'literal':
@@ -60,7 +60,7 @@ def setup(app:Sphinx) -> Dict:
     """Sphinx extension entrypoint."""
 
     app.add_config_value('mock_directives', [], 'env')
-    app.add_config_value('mock_mode', 'hide', 'env')
+    app.add_config_value('mock_default_mode', 'hide', 'env')
     app.connect('config-inited', _config_inited)
 
     return {'version': __version__}
