@@ -9,7 +9,7 @@
 :copyright: Copyright ©2021 by Shengyu Zhang.
 :license: BSD, see LICENSE for details.
 
-Sphinx extension for mocking directives and roles without modifing document.
+Sphinx extension for mocking directives and roles without modifying documents.
 (Only supports directives for now).
 
 It is useful when you want to hide directive/role or your current environment does not support such directive/role.

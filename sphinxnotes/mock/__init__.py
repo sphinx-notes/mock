@@ -1,5 +1,3 @@
-""" Sphinx extension for mocking directives and roles. """
-
 from __future__ import annotations
 from typing import List, Dict
 
@@ -13,10 +11,10 @@ from docutils import nodes
 
 __title__= 'sphinxnotes-mock'
 __license__ = 'BSD'
-__version__ = '1.0.0'
+__version__ = '1.0.1'
 __author__ = 'Shengyu Zhang'
-__url__ = 'https://sphinx-notes.github.io/mock'
-__description__ = 'Sphinx extension for mocking directives and roles'
+__url__ = 'https://sphinx.silverrainz.me/mock/'
+__description__ = 'Sphinx extension for mocking directives and roles without modifying documents'
 __keywords__ = 'documentation, sphinx, extension'
 
 logger = logging.getLogger(__name__)
