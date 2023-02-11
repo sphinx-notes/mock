@@ -1,4 +1,10 @@
-include README.rst
+# This file is generated from sphinx-notes/template. DO NOT EDIT.
+
 include LICENSE
-recursive-include doc *
-prune docs/_build
+include README.rst
+
+recursive-include tests *
+recursive-exclude * __pycache__
+recursive-exclude * *.py[co]
+
+recursive-include docs *.rst conf.py Makefile make.bat *.jpg *.png *.gif
