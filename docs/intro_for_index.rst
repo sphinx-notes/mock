@@ -1,4 +1,3 @@
-Create fake directives based on configuration,
 The extension creates mock directives and roles based on :doc:`conf`,
 for hiding unsupported directives and roles without modifying documents.
 
