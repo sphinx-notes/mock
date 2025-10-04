@@ -3,7 +3,7 @@ from typing import List, Dict
 
 from sphinx.util import logging
 from sphinx.application import Sphinx
-from sphinx.config import Config
+from sphinx.config import Config, ENUM
 from sphinx.util.docutils import SphinxDirective
 
 from docutils.parsers.rst import directives
@@ -24,43 +24,69 @@ class MockOptionSpec(Dict):
         return directives.unchanged
 
 
-class MockDirective(SphinxDirective):
+class _MockDirectiveLiteral(SphinxDirective):
+    """Mock directive that shows the directive as a literal block."""
     optional_arguments = 1
     final_argument_whitespace = True
     option_spec = MockOptionSpec()
     has_content = True
 
     def run(self) -> List[nodes.Node]:
-        mode = None
-        for d in self.config.mock_directives:
-            name = d if isinstance(d, str) else d[0]
-            if self.name != name:
-                continue
-            mode = self.config.mock_default_mode if isinstance(d, str) else d[1]
-            break
+        literal = nodes.literal_block(self.block_text, self.block_text)
+        literal['language'] = 'rst'
+        return [literal]
 
-        if mode == 'literal':
-            literal = nodes.literal_block(self.block_text, self.block_text)
-            literal['language'] = 'rst'
-            return [literal]
-        elif mode == 'hide':
-            return []
-        else:
-            raise ValueError('unsupported mock mode')
 
+class _MockDirectiveHide(SphinxDirective):
+    """Mock directive that hides the directive content."""
+    optional_arguments = 1
+    final_argument_whitespace = True
+    option_spec = MockOptionSpec()
+    has_content = True
+
+    def run(self) -> List[nodes.Node]:
+        return []
+
+
+_MOCK_DIRECTIVE_CLASSES = {
+    'literal': _MockDirectiveLiteral,
+    'hide': _MockDirectiveHide,
+}
 
 
 def _config_inited(app:Sphinx, config:Config) -> None:
     for d in config.mock_directives:
         name = d if isinstance(d, str) else d[0]
-        app.add_directive(name, MockDirective, override=True)
+        mode = config.mock_default_mode if isinstance(d, str) else d[1]
+
+        if mode not in ('literal', 'hide'):
+            raise ValueError(
+                f'Invalid mock mode for directive "{name}": {mode}. '
+                f'Must be "literal" or "hide"'
+            )
+
+        directive_class = _MOCK_DIRECTIVE_CLASSES[mode]
+        app.add_directive(name, directive_class, override=True)
 
 
 def setup(app:Sphinx) -> Dict:
     """Sphinx extension entrypoint."""
 
-    app.add_config_value('mock_directives', [], 'env')
-    app.add_config_value('mock_default_mode', 'hide', 'env')
+    app.add_config_value(
+        'mock_directives',
+        default=[],
+        rebuild='env',
+        types=list,
+        description='List of directive names to mock. Each item can be a string (directive name) '
+                    'or a tuple (directive name, mode).'
+    )
+    app.add_config_value(
+        'mock_default_mode',
+        default='hide',
+        rebuild='env',
+        types=ENUM('hide', 'literal'),
+        description='Default mode for mocking directives. Valid values: "hide", "literal".'
+    )
     app.connect('config-inited', _config_inited)
 
     return {'version': __version__}
