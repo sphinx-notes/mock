@@ -15,12 +15,12 @@ The extension provides the following configuration:
                   - mock ``toctree`` directive in default mode
                   - mock ``contents`` directive in ``hide`` mode
 
-:mock_default_mode: (Type: ``str``, ''Default: ``'hide'``)
+:mock_default_mode: (Type: ``str``, Default: ``'hide'``)
 
                     The default mode for mocking a directive/role.
                     Available values:
 
                     :hide: Hide the directive, it will not be seen on the document.
-                    :literal_block: Show the raw text of directive in a `literal block`__
+                    :literal: Show the raw text of directive in a `literal block`__
 
 __ https://docutils.sourceforge.io/docs/user/rst/quickref.html#literal-blocks
