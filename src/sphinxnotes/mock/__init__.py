@@ -9,15 +9,10 @@ from sphinx.util.docutils import SphinxDirective
 from docutils.parsers.rst import directives
 from docutils import nodes
 
-__title__= 'sphinxnotes-mock'
-__license__ = 'BSD'
-__version__ = '1.0.2'
-__author__ = 'Shengyu Zhang'
-__url__ = 'https://sphinx.silverrainz.me/mock/'
-__description__ = 'Sphinx extension for mocking directives and roles without modifying documents'
-__keywords__ = 'documentation, sphinx, extension'
+from . import meta
 
 logger = logging.getLogger(__name__)
+
 
 class MockOptionSpec(Dict):
     def __getitem__(self, _):
@@ -26,6 +21,7 @@ class MockOptionSpec(Dict):
 
 class _MockDirectiveLiteral(SphinxDirective):
     """Mock directive that shows the directive as a literal block."""
+
     optional_arguments = 1
     final_argument_whitespace = True
     option_spec = MockOptionSpec()
@@ -39,6 +35,7 @@ class _MockDirectiveLiteral(SphinxDirective):
 
 class _MockDirectiveHide(SphinxDirective):
     """Mock directive that hides the directive content."""
+
     optional_arguments = 1
     final_argument_whitespace = True
     option_spec = MockOptionSpec()
@@ -54,7 +51,7 @@ _MOCK_DIRECTIVE_CLASSES = {
 }
 
 
-def _config_inited(app:Sphinx, config:Config) -> None:
+def _config_inited(app: Sphinx, config: Config) -> None:
     for d in config.mock_directives:
         name = d if isinstance(d, str) else d[0]
         mode = config.mock_default_mode if isinstance(d, str) else d[1]
@@ -69,8 +66,9 @@ def _config_inited(app:Sphinx, config:Config) -> None:
         app.add_directive(name, directive_class, override=True)
 
 
-def setup(app:Sphinx) -> Dict:
+def setup(app: Sphinx) -> Dict:
     """Sphinx extension entrypoint."""
+    meta.pre_setup(app)
 
     app.add_config_value(
         'mock_directives',
@@ -78,15 +76,15 @@ def setup(app:Sphinx) -> Dict:
         rebuild='env',
         types=list,
         description='List of directive names to mock. Each item can be a string (directive name) '
-                    'or a tuple (directive name, mode).'
+        'or a tuple (directive name, mode).',
     )
     app.add_config_value(
         'mock_default_mode',
         default='hide',
         rebuild='env',
         types=ENUM('hide', 'literal'),
-        description='Default mode for mocking directives. Valid values: "hide", "literal".'
+        description='Default mode for mocking directives. Valid values: "hide", "literal".',
     )
     app.connect('config-inited', _config_inited)
 
-    return {'version': __version__}
+    return meta.post_setup(app)
