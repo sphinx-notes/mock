@@ -22,6 +22,11 @@ Change Log
 Version 1.x
 ===========
 
+.. version:: 1.1
+   :date: 2025-10-14
+
+   - fix: Remove redundant directive name check causing case-sensitivity issue (:pull:`4`)
+
 .. version:: 1.0.0
    :date: 2022-08-14 
 
