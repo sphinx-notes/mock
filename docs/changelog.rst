@@ -18,3 +18,17 @@ Change Log
       :date: yyyy-mm-dd
 
    Change log here.
+
+Version 1.x
+===========
+
+.. version:: 1.0.0
+   :date: 2022-08-14 
+
+   - Add confval :confval:`mock_default_mode`
+   - Support ``literal`` mock mode
+
+.. version:: 1.0.0a0
+   :date: 2022-02-01 
+
+   Add support for mocking directives.
