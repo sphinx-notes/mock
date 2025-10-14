@@ -1,14 +1,20 @@
+.. This file is generated from sphinx-notes/cookiecutter.
+   You need to consider modifying the TEMPLATE or modifying THIS FILE.
+
 ==========
 Change Log
 ==========
 
-2022-08-14 1.0.0
-----------------
+.. hint:: You may want to learn about our `Release Strategy`__
 
-- Add confval ``mock_default_mode``
-- Support ``literal`` mock mode
+   __ https://sphinx.silverrainz.me/release.html
 
-2022-02-01 1.0.0a0
-------------------
+.. Example:
 
-Add support for mocking directives.
+   1.0
+   ===
+
+   .. version:: _
+      :date: yyyy-mm-dd
+
+   Change log here.

@@ -7,19 +7,21 @@ Mock directives
 
 Consider we have an undefined ``foo`` directive in document:
 
-.. literalinclude:: foo.txt
-   :language: rst
+.. example::
+   :style: grid
 
-It will be rendered as:
+   Here is a ``foo`` directive:
 
-.. admonition:: Example
-
-   .. include:: foo.txt
+   .. foo::
+      :opt1: val1
+      :opt2: val2
+      :flag1:
 
 The directive can't be seen because it is mocked in :download:`conf.py`:
 
 .. literalinclude:: conf.py
-   :lines: 36-40
+   :start-at: mock_directives
+   :end-at: ]
    :emphasize-lines: 3
 
 Mock Mode
@@ -28,28 +30,30 @@ Mock Mode
 You can see directive ``bar`` is mocked too, but in ``literal`` mode.
 
 .. literalinclude:: conf.py
-   :lines: 36-40
+   :start-at: mock_directives
+   :end-at: ]
    :emphasize-lines: 4
 
 Consider we also have ``bar`` directive in document:
 
-.. literalinclude:: bar.txt
-   :language: rst
+.. example::
+   :style: grid
 
-It will be rendered as:
+   Here is a ``bar`` directive:
 
-.. admonition:: Example
-
-   .. include:: bar.txt
+   .. bar::
+      :opt1: val1
+      :opt2: val2
+      :flag1:
 
 What happens if we don't mock undefined directives?
 
-.. literalinclude:: baz.txt
-   :language: rst
+.. example::
+   :style: grid
 
-It will be rendered as:
+   Here is a ``baz`` directive:
 
-.. admonition:: Example
-
-   .. include:: baz.txt
-
+   .. baz::
+      :opt1: val1
+      :opt2: val2
+      :flag1:

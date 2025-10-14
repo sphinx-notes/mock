@@ -1,41 +1,80 @@
-# This file is generated from sphinx-notes/template. DO NOT EDIT.
-#
+# This file is generated from sphinx-notes/cookiecutter.
+# You need to consider modifying the TEMPLATE or modifying THIS FILE.
+
 # This file is used to configure your project.
 # Read more about the various options under:
 # https://packaging.python.org/en/latest/specifications/declaring-project-metadata/#declaring-project-metadata
 
 [project]
 name = "sphinxnotes-mock"
-description = "Sphinx extension for hiding unsupported directives and roles without modifying documents"
+description = "Sphinx extension for masking unsupported directives and roles"
 readme = "README.rst"
-license = { file = "BSD-3-Clause" }
+license = "BSD-3-Clause"
+license-files = ["LICENSE"]
 authors = [ { name = "Shengyu Zhang" } ]
 maintainers = [ { name = "Shengyu Zhang" } ]
-keywords = ["sphinx", "extension", "documentation"] # TOOD: additional_keywords
+keywords = [
+    "sphinx",
+    "extension",
+    "documentation",
+    "sphinxnotes",
+
+    # CUSTOM KEYWORDS START
+    # CUSTOM KEYWORDS END
+]
 classifiers = [
-    # "Development Status :: 4 - Beta",
+    "Development Status :: 3 - Alpha",
     "Environment :: Plugins",
     "Framework :: Sphinx",
     "Framework :: Sphinx :: Extension",
-    "License :: OSI Approved :: BSD License",
     "Operating System :: OS Independent",
     "Programming Language :: Python",
     "Programming Language :: Python :: 3",
     "Topic :: Documentation",
     "Topic :: Documentation :: Sphinx",
+
+    # CUSTOM CLASSIFIERS START
+    # CUSTOM CLASSIFIERS END
 ]
 
-requires-python = ">=3.8"
+# See ``make pyver`` for more details.
+requires-python = ">=3.12"
 dependencies = [
-    "Sphinx >= 4",
+    "Sphinx >= 7.0",
+
+    # CUSTOM DEPENDENCIES START
+    # CUSTOM DEPENDENCIES END
 ]
 
 dynamic = ["version"] # required by setuptools_scm, see section [build-system]
 
 [project.optional-dependencies]
-docs = ["furo"]
-test = ["pytest"]
-dev = ["build", "twine"]
+dev = [
+    "build",
+    "twine",
+    "cruft",
+    "ruff>=0.11.10", # pwndbg#2716
+    "pre-commit",
+]
+test = [
+    "pytest",
+]
+docs = [
+    "furo",
+    "sphinx_design",
+    "sphinx_copybutton",
+    "sphinxcontrib-gtagjs",
+    "sphinx-sitemap",
+    "sphinxext-opengraph",
+    "sphinx-last-updated-by-git",
+
+    # Dependencies of sphinxnotes projcts.
+    "sphinxnotes-project",
+    "sphinxnotes-comboroles",
+
+    # CUSTOM DOCS DEPENDENCIES START
+    # CUSTOM DOCS DEPENDENCIES END
+]
 
 [project.urls]
 homepage = "https://sphinx.silverrainz.me/mock"
@@ -57,3 +96,5 @@ version_scheme = "no-guess-dev"
 # Find namespace package,
 # check out https://setuptools.pypa.io/en/latest/userguide/package_discovery.html#finding-namespace-packages
 where = ["src"]
+
+# CUSTOM CONFIGURATION

@@ -1,42 +1,31 @@
-# This file is generated from sphinx-notes/template. DO NOT EDIT.
-#
+# This file is generated from sphinx-notes/cookiecutter.
+# You need to consider modifying the TEMPLATE or modifying THIS FILE.
+
 # Configuration file for the Sphinx documentation builder.
 #
 # This file only contains a selection of the most common options. For a full
 # list see the documentation:
 # https://www.sphinx-doc.org/en/master/usage/configuration.html
 
-import os
-import sys
-
 # -- Project information -----------------------------------------------------
 
 project = 'sphinxnotes-mock'
 author = 'Shengyu Zhang'
-copyright = "2023, " + author
+copyright = "2025, " + author
 
 # The full version, including alpha/beta/rc tags
-version = release = '1.0.2-1-g28709c2'
+version = release = '1.1'
 
 # -- General configuration ---------------------------------------------------
-
-# If extensions (or modules to document with autodoc) are in another directory,
-# add these directories to sys.path here. If the directory is relative to the
-# documentation root, use os.path.abspath to make it absolute, like shown here.
-sys.path.insert(0, os.path.abspath('../src/sphinxnotes'))
 
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
 extensions = [
     'sphinx.ext.githubpages',
-    'mock',
-]
-
-mock_directives = [
-    'contents',
-    'foo',
-    ('bar', 'literal'),
+    'sphinx_design',
+    'sphinx_copybutton',
+    'sphinx_last_updated_by_git',
 ]
 
 # Add any paths that contain templates here, relative to this directory.
@@ -79,4 +68,64 @@ html_theme_options = {
 # It is used to indicate the location of document like canonical_url
 html_baseurl = 'https://sphinx.silverrainz.me/mock'
 
-html_logo = html_favicon = '_images/sphinx-notes.png'
+html_logo = html_favicon = '_static/sphinx-notes.png'
+
+# -- Extensions -------------------------------------------------------------
+
+extensions.append('sphinx.ext.extlinks')
+extlinks = {
+    'issue': ('https://github.com/sphinx-notes/mock/issues/%s', '💬%s'),
+    'pull': ('https://github.com/sphinx-notes/mock/pull/%s', '🚀%s'),
+    'tag': ('https://github.com/sphinx-notes/mock/releases/tag/%s', '🏷️%s'),
+}
+
+extensions.append('sphinxcontrib.gtagjs')
+gtagjs_ids = ['G-E4SNX0WZYV']
+
+extensions.append('sphinx.ext.autodoc')
+autoclass_content = 'init'
+autodoc_typehints = 'description'
+
+extensions.append('sphinx.ext.intersphinx')
+intersphinx_mapping = {
+    'python': ('https://docs.python.org/3', None),
+    'sphinx': ('https://www.sphinx-doc.org/en/master', None),
+    'jinja': ('https://jinja.palletsprojects.com/en/latest/', None),
+}
+
+extensions.append('sphinx_sitemap')
+sitemap_filename = "sitemap.xml"
+sitemap_url_scheme = "{link}"
+
+extensions.append('sphinxext.opengraph')
+ogp_site_url = html_baseurl
+ogp_site_name = project
+ogp_image = html_baseurl + '/' + html_logo
+
+extensions.append('sphinxnotes.comboroles')
+comboroles_roles = {
+    'parsed_literal': (['literal'], True),
+}
+
+extensions.append('sphinxnotes.project')
+primary_domain = 'any'
+
+# -- Eat your own dog food --------------------------------------------------
+
+# If extensions (or modules to document with autodoc) are in another directory,
+# add these directories to sys.path here. If the directory is relative to the
+# documentation root, use os.path.abspath to make it absolute, like shown here.
+import os
+import sys
+sys.path.insert(0, os.path.abspath('../src/sphinxnotes'))
+extensions.append('mock')
+
+# CUSTOM CONFIGURATION
+
+mock_directives = [
+    'contents',
+    'foo',
+    ('bar', 'literal'),
+]
+
+keep_warnings = True
