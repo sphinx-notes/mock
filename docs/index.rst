@@ -1,5 +1,4 @@
 .. This file is generated from sphinx-notes/cookiecutter.
-   You need to consider modifying the TEMPLATE or modifying THIS FILE.
 
 ================
 sphinxnotes-mock
@@ -12,7 +11,7 @@ sphinxnotes-mock
    :target: https://github.com/sphinx-notes/mock/blob/master/LICENSE
    :alt: Open Source License
 .. |pypi| image:: https://img.shields.io/pypi/v/sphinxnotes-mock.svg
-   :target: https://pypi.python.org/pypi/sphinxnotes-mock
+   :target: https://pypistats.org/packages/sphinxnotes-mock
    :alt: PyPI Package
 .. |download| image:: https://img.shields.io/pypi/dm/sphinxnotes-mock
    :target: https://pypi.python.org/pypi/sphinxnotes-mock
@@ -112,6 +111,7 @@ as part of **The Sphinx Notes Project**.
    :caption: The Sphinx Notes Project
 
    Home <https://sphinx.silverrainz.me/>
+   GitHub <https://github.com/sphinx-notes>
    Blog <https://silverrainz.me/blog/category/sphinx.html>
    PyPI <https://pypi.org/search/?q=sphinxnotes>
 
