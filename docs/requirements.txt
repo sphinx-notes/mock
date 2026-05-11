@@ -12,5 +12,4 @@ sphinxnotes-project
 sphinxnotes-comboroles
 
 # CUSTOM DOCS DEPENDENCIES START
-sphinx_book_theme
 # CUSTOM DOCS DEPENDENCIES END
